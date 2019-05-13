@@ -21,7 +21,7 @@ class App extends Component {
       // https://medium.com/izettle-engineering/beginners-guide-to-web-push-notifications-using-service-workers-cb3474a17679
 
     sendNoti(text, title) {        
-        fetch('http://localhost:9090/api/push_message', {
+        fetch('https://express-push.herokuapp.com/api/push_message', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'

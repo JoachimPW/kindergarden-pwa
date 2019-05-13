@@ -26,7 +26,7 @@ function subscribeToPush() {
             console.log(sub)
             serviceWorkerRegistration.pushManager.subscribe(options).then(
                 function (pushSubscription) {
-                    fetch('http://localhost:9090/api/subscribe', {
+                    fetch('https://express-push.herokuapp.com/api/subscribe', {
                         method: 'post',
                         headers: {
                             'Content-type': 'application/json'
