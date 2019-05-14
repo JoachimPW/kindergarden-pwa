@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const morgan = require('morgan');
 const webpush = require('web-push');
-require('dotenv').config({path: "../.env"})
+require('dotenv').config({
+    path: "../.env"
+})
 var mongoose = require('mongoose')
 /**** Configuration ****/
 const port = (process.env.PORT || 9090);
@@ -42,6 +44,29 @@ mongoose.connect(process.env.dbUrl, (err) => {
 
 var Schema = mongoose.Schema;
 
+var User = new Schema({
+    username: String,
+    password: String
+})
+
+var Users = mongoose.model("User", User)
+
+ var New = new Schema({
+     title: String,
+     date: String,
+     text: String
+ })
+
+var News = mongoose.model("New", New)
+
+var Day = new Schema({
+    date: String,
+    in: String,
+    out: String
+})
+
+var Days = mongoose.model("Day", Day)
+
 var Sub = new Schema({
     endpoint: String,
     expirationTime: String,
@@ -62,12 +87,84 @@ app.get('/subs', (req, res) => {
     })
 })
 
+app.get("/getNews", (req, res) => {
+    News.find({}, (err, news) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send(news)
+    })
+})
+
+app.get("/getDays", (req, res) => {
+    Days.find({}, (err, days) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send(days)
+    })
+})
+
+app.post("/createNews", (req, res) => {
+    var news = new News(req.body)
+    news.save(function (err, news) {
+        if (err) {
+            console.log(err)
+            return res.status(500).send();
+        }
+        res.json(201, news)
+    })
+})
+
+app.post("/createTime", (req, res) => {
+    var day = new Days(req.body)
+    day.save(function (err, day) {
+        if (err) {
+            console.log(err)
+            return res.status(500).send();
+        }
+        res.json(201, day)
+    })
+})
+
+app.post("/signup", (req, res) => {
+    var user = new Users(req.body)
+    user.save(function (err, user) {
+        if (err) {
+            console.log(err);
+            send.json("fejl");
+        }
+        res.json(201, user);
+    })
+})
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    Users.findOne({
+        username: username,
+        password: password
+    }, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+        if (!user) {
+            return res.status(404).send();
+        }
+
+        return res.status(200).send(user);
+
+    })
+})
+
 /**** Routes ****/
 app.post('/api/subscribe', (req, res) => { // Store subscription on server
     const subscription = req.body;
     var sub = new Subs(req.body);
-    sub.save(function (err, sub)  {
-        if(err) {
+    sub.save(function (err, sub) {
+        if (err) {
             return (err)
         }
         res.json(201, sub)
@@ -80,38 +177,40 @@ app.post('/api/subscribe', (req, res) => { // Store subscription on server
         console.log(msg, sub);
         res.status(201).json({msg: msg});
     } else {*/
-        /*Sub.push(sub);  
-        console.log("Sub:" + sub)
-        res.send(sub)
-        res.status(201).json({msg: 'Subscription is successful'});
-        sub.save(); */   
+    /*Sub.push(sub);  
+    console.log("Sub:" + sub)
+    res.send(sub)
+    res.status(201).json({msg: 'Subscription is successful'});
+    sub.save(); */
 });
 
 app.post('/api/push_message', (req, res, next) => {
     let text = req.body.text;
     let title = req.body.title;
 
-    Subs.find({}, (err, sub) => {  
-        if(err) {
+    Subs.find({}, (err, sub) => {
+        if (err) {
             console.log(err);
         }
         sub.forEach((elm) => {
             const payload = JSON.stringify({
                 msg: text,
-                title: title            
+                title: title
+            });
+
+            webpush.sendNotification(elm, payload).catch(error => {
+                console.error(error.stack);
+            });
         });
-    
-        webpush.sendNotification(elm, payload).catch(error => {
-            console.error(error.stack);
-        });   
-        });
-    res.json({message: "Sending push messages initiated"})
-    })              
+        res.json({
+            message: "Sending push messages initiated"
+        })
+    })
 });
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'));
-  });         
+});
 /**** Start server ****/
 const server = app.listen(port,
     () => console.log(`API Service running on port ${port}!`));
