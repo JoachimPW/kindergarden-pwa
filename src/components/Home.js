@@ -7,8 +7,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userEmail: "fire.auth().currentUser.email",
+        this.state = {            
             text:"HEJ",
             title:"DAV",
             news: [],
@@ -18,15 +17,14 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            userEmail: "fire.auth().currentUser.email"
-        })
-
-        fetch('http://localhost:9090/getNews')
+        
+        //https://express-push.herokuapp.com/
+        // http://localhost:9090
+        fetch('https://express-push.herokuapp.com/getNews')
         .then(response => response.json())
         .then(data => this.setState({ news: data }))
 
-        fetch('http://localhost:9090/getDays')
+        fetch('https://express-push.herokuapp.com/getDays')
         .then(response => response.json())
         .then(data => this.setState({ days: data }))
     }

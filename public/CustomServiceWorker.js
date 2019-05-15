@@ -4,6 +4,8 @@ self.addEventListener('install', event => {
     console.log('The service worker is being installed.');
 });
 
+
+
 self.addEventListener('push', function (event) {
     const data = event.data.json();
     console.log("Getting push data", data);

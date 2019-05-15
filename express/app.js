@@ -51,11 +51,11 @@ var User = new Schema({
 
 var Users = mongoose.model("User", User)
 
- var New = new Schema({
-     title: String,
-     date: String,
-     text: String
- })
+var New = new Schema({
+    title: String,
+    date: String,
+    text: String
+})
 
 var News = mongoose.model("New", New)
 
@@ -76,11 +76,11 @@ var Sub = new Schema({
     }
 })
 
-var Subs = mongoose.model("Sub", Sub)
+var Subscriptions = mongoose.model("Subscription", Sub)
 
 // Finder alle subs
 app.get('/subs', (req, res) => {
-    Subs.find({}, (err, subs) => {
+    Subscriptions.find({}, (err, subs) => {
         if (err) {
             console.log(err)
         }
@@ -166,18 +166,33 @@ app.post("/login", (req, res) => {
     })
 })
 
-/**** Routes ****/
 // Gemmer subscription i DB
 app.post('/api/subscribe', (req, res) => { // Store subscription on server
     const subscription = req.body;
-    var sub = new Subs(req.body);
-    sub.save(function (err, sub) {
+    Subscriptions.findOne({ endpoint: req.body.endpoint }, (err, checksub) => {
         if (err) {
-            return (err)
+            console.log(err)
         }
-        res.json(201, sub)
-        console.log("Ny sub tilføjet", sub);
+        if (checksub) {
+            console.log("sub:" + checksub)
+            console.log("Already stored");
+            res.send("Sub already stored")
+        }
+        else {
+            console.log("checksub:" + checksub)
+            var sub = new Subscriptions(req.body);
+            sub.save(function (err, sub) {
+                if (err) {
+                    return (err)
+                }
+                res.json(201, sub)
+                console.log("Ny sub tilføjet", sub);
+            })
+        }
+
     })
+
+
     //const sub = Sub.find(elm => elm.endpoint === endpoint);
 
     /*if (sub) {
@@ -197,7 +212,7 @@ app.post('/api/push_message', (req, res, next) => {
     let text = req.body.text;
     let title = req.body.title;
 
-    Subs.find({}, (err, sub) => {
+    Subscriptions.find({}, (err, sub) => {
         if (err) {
             console.log(err);
         }
