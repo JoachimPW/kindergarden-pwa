@@ -78,6 +78,7 @@ var Sub = new Schema({
 
 var Subs = mongoose.model("Sub", Sub)
 
+// Finder alle subs
 app.get('/subs', (req, res) => {
     Subs.find({}, (err, subs) => {
         if (err) {
@@ -87,6 +88,7 @@ app.get('/subs', (req, res) => {
     })
 })
 
+// Finder alle nyheder
 app.get("/getNews", (req, res) => {
     News.find({}, (err, news) => {
         if (err) {
@@ -96,6 +98,7 @@ app.get("/getNews", (req, res) => {
     })
 })
 
+// Finder alle aflevere/afhent
 app.get("/getDays", (req, res) => {
     Days.find({}, (err, days) => {
         if (err) {
@@ -105,6 +108,7 @@ app.get("/getDays", (req, res) => {
     })
 })
 
+// Post en nyhed
 app.post("/createNews", (req, res) => {
     var news = new News(req.body)
     news.save(function (err, news) {
@@ -116,6 +120,7 @@ app.post("/createNews", (req, res) => {
     })
 })
 
+// Post en aflevere/afhentning
 app.post("/createTime", (req, res) => {
     var day = new Days(req.body)
     day.save(function (err, day) {
@@ -127,6 +132,7 @@ app.post("/createTime", (req, res) => {
     })
 })
 
+// Opret en user
 app.post("/signup", (req, res) => {
     var user = new Users(req.body)
     user.save(function (err, user) {
@@ -138,6 +144,7 @@ app.post("/signup", (req, res) => {
     })
 })
 
+// Login med en user
 app.post("/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -160,6 +167,7 @@ app.post("/login", (req, res) => {
 })
 
 /**** Routes ****/
+// Gemmer subscription i DB
 app.post('/api/subscribe', (req, res) => { // Store subscription on server
     const subscription = req.body;
     var sub = new Subs(req.body);
@@ -184,6 +192,7 @@ app.post('/api/subscribe', (req, res) => { // Store subscription on server
     sub.save(); */
 });
 
+// Finder alle subscriptions i DB og sender en push notification til hver af dem
 app.post('/api/push_message', (req, res, next) => {
     let text = req.body.text;
     let title = req.body.title;

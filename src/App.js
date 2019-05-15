@@ -27,15 +27,15 @@ class App extends Component {
     componentDidMount() {
         if (!localStorage.getItem("loggedIn")) {
             localStorage.setItem("loggedIn", "")
-        }
-
-       
-
+        }     
     }
     
 
     render() {
-        if (localStorage.getItem("loggedIn").length == 0) {
+        if (!localStorage.getItem("loggedIn")) {
+            localStorage.setItem("loggedIn", "")
+        }   
+        else if(localStorage.getItem("loggedIn").length == 0) {         
             return (<Login />)
         }
         return ((<Home />))        
