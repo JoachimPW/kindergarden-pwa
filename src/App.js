@@ -35,7 +35,7 @@ class App extends Component {
         if (!localStorage.getItem("loggedIn")) {
             localStorage.setItem("loggedIn", "")
         }   
-        else if(localStorage.getItem("loggedIn").length == 0) {         
+        if(localStorage.getItem("loggedIn").length == 0) {         
             return (<Login />)
         }
         return ((<Home />))        
