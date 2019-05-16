@@ -18,22 +18,28 @@ workbox.routing.registerRoute(
   )
 
 workbox.routing.registerRoute(
-    'http://localhost:3000',
+    'https://express-push.herokuapp.com',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'http://localhost:3000/',
+    'https://express-push.herokuapp.com/',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'http://localhost:3000/news',
+    'https://express-push.herokuapp.com/news',
     workbox.strategies.networkFirst()
   )
 
   workbox.routing.registerRoute(
-    'http://localhost:3000/calendar',
+    'https://express-push.herokuapp.com/calendar',
     workbox.strategies.networkFirst()
   )
+  workbox.routing.registerRoute(
+    'https://express-push.herokuapp.com/getNews',
+    workbox.strategies.networkFirst()
+  )
+
+  
 
 self.addEventListener('push', function (event) {
     const data = event.data.json();
