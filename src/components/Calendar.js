@@ -1,53 +1,18 @@
 import React, { Component } from 'react'
-import Modal from './modal.js';
 import Header from './Header';
 
 export default class Calendar extends Component {
     constructor(props) {
         super(props);
 
-        this.replaceModalItem = this.replaceModalItem.bind(this);
-        this.saveModalDetails = this.saveModalDetails.bind(this);
         this.state = {
             requiredItem: 0,
             brochure: [
-                {
-                    dato: "Mandag d. 3. juni",
-                    afleveret: "08:15",
-                    afhentet: "16:00"
-                },
-                {
-                    dato: "Tirsdag d. 4. juni",
-                    afleveret: "08:15",
-                    afhentet: "16:00"
-                },
-                 {
-                    dato: "Onsdag d. 5. juni",
-                    afleveret: "08:15",
-                    afhentet: "16:00"
-                }
+               
             ]
         }
     }
 
-    replaceModalItem(index) {
-        this.setState({
-            requiredItem: index
-        });
-    }
-
-    saveModalDetails(item) {
-        const requiredItem = this.state.requiredItem;
-        let tempbrochure = this.state.brochure;
-        tempbrochure[requiredItem] = item;
-        this.setState({ brochure: tempbrochure });
-    }
-
-    deleteItem(index) {
-        let tempBrochure = this.state.brochure;
-        tempBrochure.splice(index, 1);
-        this.setState({ brochure: tempBrochure });
-    }
 
     render() {
 
@@ -73,7 +38,9 @@ export default class Calendar extends Component {
                 <hr></hr>
               </div>
             </article>
-          </React.Fragment>)
+          </React.Fragment>
+          
+          )
     
         });
        
@@ -81,7 +48,6 @@ export default class Calendar extends Component {
                 <div class="wrapper">
                     <div id="content">
                     <Header></Header>
-                    
                         <div class="container">
                             <div class="col-lg-12">
                                 <h1>Kalender</h1>
@@ -94,3 +60,4 @@ export default class Calendar extends Component {
             )
         }
 }
+
