@@ -39,6 +39,11 @@ workbox.routing.registerRoute(
     workbox.strategies.networkFirst()
   )
 
+  workbox.routing.registerRoute(
+    'https://express-push.herokuapp.com/getDays',
+    workbox.strategies.networkFirst()
+  )
+
   
 
 self.addEventListener('push', function (event) {
