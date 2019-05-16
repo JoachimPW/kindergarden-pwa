@@ -54,16 +54,16 @@ export default class Home extends Component {
                                         <div id="content">
                                             <Header></Header>
                                             <div>
-                                                <br></br> <br></br>
+                                                <div class="no-display-push">
                                                 <div className="container">
                                                     <h1>Push Notifications</h1>
                                                     <button onClick={() => this.sendNoti(this.state.text, this.state.title)}>SEND NOTI</button>
                                                     <p>This page will try to display Notifications from Web Push messages.</p>
                                                 </div>
+                                                </div>
                                             </div>
                                             <div id="front-wrapper">
-                                                <h1>Kindergarten App</h1>
-                                                <img src="~/imageslogo.jpg" alt="Kindergarten Logo" />
+                                                <h1><span>Kinder</span>garten</h1>
                                                 <a href="/news" ><button className="btn btn-primary center-block"> News </button></a>
                                                 <a href="/calendar"><button className="btn btn-primary center-block"> Calendar </button></a>
                                             </div>
