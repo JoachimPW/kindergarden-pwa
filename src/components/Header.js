@@ -1,28 +1,52 @@
 import React, { Component } from 'react'
+import gif from '../../src/wifi-4.4s-253px.gif';
 
 export default class HeaderInclude extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user:{}
-        
+      user: {},
+      gif: ""
+
     }
     this.logout = this.logout.bind(this);
+    this.checkStatus = this.checkStatus.bind(this);
   }
 
   logout() {
-   localStorage.setItem("loggedIn", "")
-   localStorage.setItem("username", "")
+    localStorage.setItem("loggedIn", "")
+    localStorage.setItem("username", "")
   }
 
-  componentDidMount(){
-    window.minGlobal()  
+  componentDidMount() {
+    window.minGlobal()
+    this.interval = setInterval(() => this.checkStatus(), 1000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  checkStatus() {
+    if (!navigator.onLine) {
+      console.log("OFFLINE")
+      this.setState({
+        status: "You are currently offline - trying to establish connection",
+        gif: <img src={gif} alt="" />
+      })
+    }
+    else if (navigator.onLine) {
+      this.setState({
+        status: "Online",
+        gif: ""
+      })
+    }
+  };
 
   render() {
     return (
       <React.Fragment>
-        
+
         <button type="button" id="sidebarCollapse" class="btn main-background btn-toggle">
           <i class="fas fa-align-left"></i>
         </button>
@@ -57,6 +81,13 @@ export default class HeaderInclude extends Component {
             </li>
           </ul>
         </nav>
+        <div className="container">
+          <div className="statusCheck col-lg-10 offset-lg-1">
+            <h4>{this.state.status}</h4>
+            <img style={{ display: "none" }} src={gif} alt="" />
+            {this.state.gif}
+          </div>
+        </div>
 
       </React.Fragment>
     )

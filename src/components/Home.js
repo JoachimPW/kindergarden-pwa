@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import News from "./News.js";
 import Calendar from "./Calendar.js"
 import Header from "./Header.js";
-import gif from '../../src/wifi-4.4s-253px.gif';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 export default class Home extends Component {
@@ -13,16 +12,14 @@ export default class Home extends Component {
             title: "DAV",
             news: [],
             days: [],
-            status: "",
-            gif: ""
+            status: ""
+            
         }
         this.sendNoti = this.sendNoti.bind(this);
-        this.checkStatus = this.checkStatus.bind(this);
+       
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.checkStatus(), 1000);
-
         //https://express-push.herokuapp.com/
         // http://localhost:9090
         fetch('https://express-push.herokuapp.com/getNews')
@@ -33,26 +30,7 @@ export default class Home extends Component {
             .then(response => response.json())
             .then(data => this.setState({ days: data }))
     }
-
-    componentWillUnmount() {
-        clearInterval(this.interval)
-    }
-
-    checkStatus() {
-        if (!navigator.onLine) {
-            console.log("OFFLINE")
-            this.setState({
-                status: "Offline",
-                gif: <img src={gif} />
-            })
-        }
-        else if (navigator.onLine) {
-            this.setState({
-                status: "Online",
-                gif: ""
-            })
-        }
-    };
+    
 
     sendNoti(text, title) {
         fetch('https://express-push.herokuapp.com/api/push_message', {
@@ -78,12 +56,7 @@ export default class Home extends Component {
                                 <React.Fragment>
                                     <div className="wrapper">
                                         <div id="content">
-                                            <Header></Header>
-                                            <div>
-                                                <h1>{this.state.status}</h1>
-                                                <img style={{ display: "none" }} src={gif} />
-                                                {this.state.gif}
-                                            </div>
+                                            <Header></Header>                                            
                                             <div>
                                                 <div class="no-display-push">
                                                     <div className="container">

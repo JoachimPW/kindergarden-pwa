@@ -39,6 +39,36 @@
   margin: 0;
 }
 
+.statusCheck {
+  border:1px solid rgba(0,0,0,.125);
+  text-align:center;
+  max-height:175px;
+  background-color: #7386D5;
+  
+  color: #fff;
+  margin-bottom:25px;
+  
+}
+
+.statusCheck h4 {
+  display: inline-block;
+  color:#fff;
+}
+
+.statusCheck img {
+  max-width:150px;
+  max-height: 150px;
+  margin-bottom:25px;
+}
+
+@media screen and (max-width:580px) {
+  .statusCheck img {
+    max-width:100px;
+    max-height: 100px;
+    margin-bottom:25px;
+  }
+}
+
 html,
 .bodyDiv {
   height: 100vh;
