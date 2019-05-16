@@ -47,12 +47,12 @@ export default class Calendar extends Component {
                 <h3>{elm.date}</h3>
                     <fieldset>
                         <label>Aflever</label>
-                        <input type="text" value={elm.in} id="input_from" />
+                        <input class="calender-input" type="text" value={elm.in} id="input_from" />
                     </fieldset>
 
                     <fieldset>
                         <label>Hent</label>
-                        <input type="text" value={elm.out} id="input_to" />
+                        <input class="calender-input" type="text" value={elm.out} id="input_to" />
                     </fieldset>
 
                 </div>

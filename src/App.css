@@ -310,7 +310,7 @@ fieldset {
   padding: 0;
   position: relative;
 }
-input {
+.calender-input {
   font-size: 1em;
   font-family: sans-serif;
   font-weight: 200;
@@ -321,7 +321,7 @@ input {
   box-sizing: border-box;
   margin: 0;
 }
-input:focus {
+.calender-input:focus {
   border-color: #0089ec;
 }
 .whitespace:before {
