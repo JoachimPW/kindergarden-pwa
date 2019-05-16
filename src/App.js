@@ -28,6 +28,7 @@ class App extends Component {
         if (!localStorage.getItem("loggedIn")) {
             localStorage.setItem("loggedIn", "")
         }     
+        
     }
     
 

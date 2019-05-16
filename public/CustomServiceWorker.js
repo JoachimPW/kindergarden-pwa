@@ -4,7 +4,36 @@ self.addEventListener('install', event => {
     console.log('The service worker is being installed.');
 });
 
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js');
 
+if (workbox) {
+  console.log(`Yay! Workbox is loaded 🎉`);
+} else {
+  console.log(`Boo! Workbox didn't load 😬`);
+}
+
+workbox.routing.registerRoute(
+    /\.(?:js|css|html)$/,
+    workbox.strategies.networkFirst(),
+  )
+
+workbox.routing.registerRoute(
+    'http://localhost:3000',
+    workbox.strategies.networkFirst()
+  )
+  workbox.routing.registerRoute(
+    'http://localhost:3000/',
+    workbox.strategies.networkFirst()
+  )
+  workbox.routing.registerRoute(
+    'http://localhost:3000/news',
+    workbox.strategies.networkFirst()
+  )
+
+  workbox.routing.registerRoute(
+    'http://localhost:3000/calendar',
+    workbox.strategies.networkFirst()
+  )
 
 self.addEventListener('push', function (event) {
     const data = event.data.json();

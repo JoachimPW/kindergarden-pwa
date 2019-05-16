@@ -41,10 +41,10 @@ export default class HeaderInclude extends Component {
               <a href="/"><i class="fas fa-home icon-nav"></i>Home</a>
             </li>
             <li>
-              <a href="/News"><i class="fas fa-newspaper icon-nav"></i>News</a>
+              <a href="/news"><i class="fas fa-newspaper icon-nav"></i>News</a>
             </li>
             <li>
-              <a href="/Calendar"><i class="far fa-calendar-alt icon-nav"></i>Calendar</a>
+              <a href="/calendar"><i class="far fa-calendar-alt icon-nav"></i>Calendar</a>
             </li>
             <li>
               <a href="/"><i class="far fa-images icon-nav"></i>Photos</a>
