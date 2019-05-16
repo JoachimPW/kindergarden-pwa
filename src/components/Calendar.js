@@ -11,7 +11,21 @@ export default class Calendar extends Component {
         this.state = {
             requiredItem: 0,
             brochure: [
-            
+                {
+                    dato: "Mandag d. 3. juni",
+                    afleveret: "08:15",
+                    afhentet: "16:00"
+                },
+                {
+                    dato: "Tirsdag d. 4. juni",
+                    afleveret: "08:15",
+                    afhentet: "16:00"
+                },
+                 {
+                    dato: "Onsdag d. 5. juni",
+                    afleveret: "08:15",
+                    afhentet: "16:00"
+                }
             ]
         }
     }
@@ -43,7 +57,7 @@ export default class Calendar extends Component {
             <article>
               <div class="col-lg-12">
                 <div class="card">
-               
+
                 <h3>{elm.date}</h3>
                     <fieldset>
                         <label>Aflever</label>
@@ -62,24 +76,56 @@ export default class Calendar extends Component {
           </React.Fragment>)
     
         });
-     
+        if (this.state.brochure.length > 0) {
+            const brochure = this.state.brochure.map((item, index) => {
+                return (
+                    <React.Fragment>
+                    {dayList}
+                    <article>
+                        <div key={index} class="col-lg-12">
+                            <div class="card">
+                                <h1 style={{textAlign: "center"}}>{item.dato}</h1>
+                                <h2>Aflevere:  {item.afleveret}</h2>
+                                <h2>Afhent: {item.afhentet}</h2>z
+                                <div class="col-lg-4">
+                                    <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                        onClick={() => this.replaceModalItem(index)}>edit</button> {" "}
+                                </div>
+                            </div>
+                            <hr></hr>
+                        </div>
+                    </article>
+                    </React.Fragment>
+                )
+            });
 
-        return (            
-            <React.Fragment>
+            const requiredItem = this.state.requiredItem;
+            let modalData = this.state.brochure[requiredItem];
+            return (
                 <div class="wrapper">
                     <div id="content">
-
-                        <Header></Header>        
+                    <Header></Header>
                         <div class="container">
                             <div class="col-lg-12">
-                                <h1>Kalender</h1>
+                                <h1>Calendar</h1>
                             </div>
-                            {dayList}
+                            {brochure}
+                            <React.Fragment>
+                                <div className="overlay"></div>
+                                <div>
+                                    <Modal
+                                        dato={modalData.dato}
+                                        afleveret={modalData.afleveret}
+                                        afhentet={modalData.afhentet}
+                                        saveModalDetails={this.saveModalDetails}
+                                    />
+                                </div>
+                            </React.Fragment>
                         </div>
                     </div>
-                </div>                      
-             </React.Fragment>
-
-                );
+                </div>
+            )
+        }
+        return <h1>INGEN DATA</h1>
     }
 }

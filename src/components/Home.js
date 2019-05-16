@@ -11,12 +11,15 @@ export default class Home extends Component {
             text:"HEJ",
             title:"DAV",
             news: [],
-            days: []
+            days: [],
+            status: ""
         }
         this.sendNoti = this.sendNoti.bind(this);
+        this.checkStatus = this.checkStatus.bind(this);
     }
 
     componentDidMount() {
+        this.interval = setInterval(() => this.checkStatus(), 1000);
         
         //https://express-push.herokuapp.com/
         // http://localhost:9090
@@ -28,6 +31,24 @@ export default class Home extends Component {
         .then(response => response.json())
         .then(data => this.setState({ days: data }))
     }
+
+    componentWillUnmount(){
+        clearInterval(this.interval)
+    }
+
+    checkStatus() {
+        if(!navigator.onLine){
+            console.log("OFFLINE")
+            this.setState({
+                status: "Offline"
+            })             
+        }
+        else if(navigator.onLine) {
+        this.setState({
+            status:"Online"
+        })
+    }
+    };
 
     sendNoti(text, title) {        
         fetch('https://express-push.herokuapp.com/api/push_message', {
@@ -42,7 +63,8 @@ export default class Home extends Component {
         }).catch(error => console.error(error));
     }
 
-    render() {
+    render() {     
+        
         return (
             <Router>
                 <React.Fragment>
@@ -53,6 +75,7 @@ export default class Home extends Component {
                                     <div className="wrapper">
                                         <div id="content">
                                             <Header></Header>
+                                            <h1>{this.state.status}</h1>
                                             <div>
                                                 <div class="no-display-push">
                                                 <div className="container">

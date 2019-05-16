@@ -17,6 +17,11 @@ workbox.routing.registerRoute(
     workbox.strategies.networkFirst(),
   )
 
+  workbox.routing.registerRoute(
+    'http://localhost:3000',
+    workbox.strategies.networkFirst()
+  )
+
 workbox.routing.registerRoute(
     'https://express-push.herokuapp.com',
     workbox.strategies.networkFirst()
