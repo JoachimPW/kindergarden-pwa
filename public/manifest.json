@@ -3,7 +3,7 @@
   "short_name": "KG",
   "theme_color": "#7386d5",
   "background_color": "#7386d5",
-  "display": "browser",
+  "display": "fullscreen",
   "Scope": "/",
   "start_url": "/",
   "icons": [
