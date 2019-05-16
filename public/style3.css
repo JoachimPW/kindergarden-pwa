@@ -228,7 +228,7 @@ a.article:hover {
     height: 200px;
     width: 30%;
     position:absolute;
-    top: 50%;
+    top: 40%;
     left: 40%;
     margin-top: -100px;
     margin-left: -50px;
@@ -251,8 +251,15 @@ a.article:hover {
     border: none;
     }
 
+    #front-wrapper img {
+       width: 40%;
+       margin: 5% 30%;
+    }
+
 .no-display-push {
 display:none;  
 }
+
+
 
 
