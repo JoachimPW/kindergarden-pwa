@@ -77,8 +77,7 @@ export default class Calendar extends Component {
                             <div class="card">
                                 <h1 style={{textAlign: "center"}}>{item.dato}</h1>
                                 <h2>Aflevere:  {item.afleveret}</h2>
-                                <h2>Afhent: {item.afhentet}</h2>
-                                <h1>{item._id}</h1>
+                                <h2>Afhent: {item.afhentet}</h2>z
                                 <div class="col-lg-4">
                                     <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                                         onClick={() => this.replaceModalItem(index)}>edit</button> {" "}                                    

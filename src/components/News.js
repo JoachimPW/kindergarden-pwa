@@ -29,7 +29,7 @@ class News extends Component {
 
             <div class="container">
               <div class="col-lg-12">
-                <h1>News</h1>
+                <h1>Nyheder</h1>
               </div>
               {newsList}
 

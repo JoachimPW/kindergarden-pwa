@@ -36,18 +36,18 @@ export default class HeaderInclude extends Component {
           </div>
 
           <ul class="list-unstyled components">
-            <p class="logged-in">Logged in as:<br /> {localStorage.getItem("username")}</p>
+            <p class="logged-in">Du er logget ind som:<br /> {localStorage.getItem("username")}</p>
             <li>
               <a href="/"><i class="fas fa-home icon-nav"></i>Home</a>
             </li>
             <li>
-              <a href="/news"><i class="fas fa-newspaper icon-nav"></i>News</a>
+              <a href="/news"><i class="fas fa-newspaper icon-nav"></i>Nyheder</a>
             </li>
             <li>
-              <a href="/calendar"><i class="far fa-calendar-alt icon-nav"></i>Calendar</a>
+              <a href="/calendar"><i class="far fa-calendar-alt icon-nav"></i> Kalender</a>
             </li>
             <li>
-              <a href="/"><i class="far fa-images icon-nav"></i>Photos</a>
+              <a href="/"><i class="far fa-images icon-nav"></i>Galleri</a>
             </li>
           </ul>
 
