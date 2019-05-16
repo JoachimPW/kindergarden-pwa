@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Modal from './modal.js';
 import Header from './Header';
 class News extends Component {
 
