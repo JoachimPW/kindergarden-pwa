@@ -64,6 +64,7 @@ export default class Home extends Component {
                                             </div>
                                             <div id="front-wrapper">
                                                 <h1><span>Kinder</span>garten</h1>
+                                                <img src="https://unixtitan.net/images/ballon-vector-kids-3.png" />
                                                 <a href="/news" ><button className="btn btn-primary center-block"> News </button></a>
                                                 <a href="/calendar"><button className="btn btn-primary center-block"> Calendar </button></a>
                                             </div>
