@@ -9,8 +9,8 @@ export default class NewQuestion extends Component {
       title: "",
       date: "",
       text: ""
-    }   
-    
+    }
+
     this.handleNewsInput = this.handleNewsInput.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -36,35 +36,45 @@ export default class NewQuestion extends Component {
   }
 
   handleNewsInput(event) {
-      event.preventDefault()
-      this.props.addNews(this.state.title, this.state.date, this.state.text);
-    }
-  
+    event.preventDefault()
+    this.props.addNews(this.state.title, this.state.date, this.state.text);
+  }
+
 
   render() {
     return (
       <React.Fragment>
-        <br></br>
-        <br></br>
-        <div className="row justify-content-md-center">
-          <div className="col-lg-8 col-centered" style={{ textAlign: "center" }}>
-            <div className="card">
-              <div className="card-body">
-                <form>
-                  <div className="form-group">
-                    <label> Post News</label>
-                    <input type="text" onChange={this.onChangeTitle} className="form-control" id="title" placeholder="Title..."></input>
-                    <input type="text" onChange={this.onChangeDate} className="form-control" id="title" placeholder="Date..."></input>
-                    <textarea type="text" onChange={this.onChangeText} className="form-control" placeholder="Text..."></textarea>
-                  </div>
-                  <button onClick={this.handleNewsInput}
-                    type="submit" id="submitButton" className="btn btn-primary"> Post News
-                  </button>
-                </form>
-              </div>
+
+        <div class="container">
+            <div class="col-lg-12">
+              <form class="custom-form">
+                <h2 class="center">Tilføj en nyhed</h2>
+                <div className="form-group col-lg-12">
+                  <label class>Overskrift</label>
+                  <input type="text" onChange={this.onChangeTitle} className="form-control" id="title" placeholder="Title..."></input>
+                </div>
+
+                <div className="form-group col-lg-12">
+                <label class>Dato</label>
+                  <input type="text" onChange={this.onChangeDate} className="form-control" id="dato" placeholder="Dato"></input>
+                </div>
+
+                <div className="form-group col-lg-12">
+                <label class>Tekst</label>
+                  <textarea type="text" onChange={this.onChangeText} className="form-control" id="tekst" placeholder="Skriv nyhed her..."></textarea>
+                </div>
+
+                <button onClick={this.handleNewsInput}
+                  type="submit" id="submitButton" className="btn btn-primary"> Tilføj nyhed
+                </button>
+
+              </form>
             </div>
-          </div>
         </div>
+
+
+
+
       </React.Fragment>
     )
   }

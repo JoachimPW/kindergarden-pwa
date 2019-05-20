@@ -107,7 +107,7 @@ export default class Home extends Component {
                                                 </div>
                                             </div>
                                             <div id="front-wrapper">
-                                                <h1><span>Kinder</span>garten</h1>
+                                                <h1><span>Kinder</span>garden</h1>
                                                 <img src="https://unixtitan.net/images/ballon-vector-kids-3.png" />
                                                 <a href="/news" ><button className="btn btn-primary center-block"> News </button></a>
                                                 <a href="/calendar"><button className="btn btn-primary center-block"> Calendar </button></a>
@@ -118,10 +118,15 @@ export default class Home extends Component {
                         />
                         <Route exact path={"/News"}
                             render={(props) =>
-                                <React.Fragment>
-                                    <News {...props} news={this.state.news} />
-                                    <CreateNews {...props} addNews={this.addNews}></CreateNews>
-                                </React.Fragment>}
+                                <React.Fragment>  
+                        <div class="wrapper">
+                            <div id="content">                           
+                                <News {...props} news={this.state.news} />    
+                                <CreateNews {...props} addNews={this.addNews}></CreateNews>                         
+                            </div>
+                        </div>                                     
+                            </React.Fragment>      
+                                }
                         />
 
                         <Route exact path={"/Calendar"}

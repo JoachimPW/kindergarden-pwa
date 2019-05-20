@@ -21,20 +21,15 @@ class News extends Component {
     });
     return (
       <React.Fragment>
-        <div class="wrapper">
-          <div id="content">
-
+      
             <Header></Header>
-
-            <div class="container">
-              <div class="col-lg-12">
-                <h1>Nyheder</h1>
+            <div class="container"> 
+              <div class="col-lg-12"> 
+                  <h1>Nyheder</h1>
               </div>
-              {newsList}
-
+                 {newsList}
             </div>
-          </div>
-        </div>
+    
 
       </React.Fragment>
     );
