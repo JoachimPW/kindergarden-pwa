@@ -219,6 +219,10 @@ a.article:hover {
     padding: 25px 25px;
     margin-bottom: 5px;
 }
+.form-fix {
+    width:100%;
+    text-align:center;
+}
 
 
  /* --------------- FRONTPAGE --------------- */

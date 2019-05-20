@@ -169,7 +169,9 @@ app.post("/login", (req, res) => {
 // Gemmer subscription i DB
 app.post('/api/subscribe', (req, res) => { // Store subscription on server
     const subscription = req.body;
-    Subscriptions.findOne({ endpoint: req.body.endpoint }, (err, checksub) => {
+    Subscriptions.findOne({
+        endpoint: req.body.endpoint
+    }, (err, checksub) => {
         if (err) {
             console.log(err)
         }
@@ -177,8 +179,7 @@ app.post('/api/subscribe', (req, res) => { // Store subscription on server
             console.log("sub:" + checksub)
             console.log("Already stored");
             res.send("Sub already stored")
-        }
-        else {
+        } else {
             console.log("checksub:" + checksub)
             var sub = new Subscriptions(req.body);
             sub.save(function (err, sub) {
@@ -231,6 +232,20 @@ app.post('/api/push_message', (req, res, next) => {
         })
     })
 });
+
+app.put("/changeTime/:id", (req, res) => {
+
+    Days.findOneAndUpdate({
+        _id: req.params.id
+    }, req.body, function (err, place) {
+        if(err) {
+            console.log(err)
+        }
+        res.send(place);
+        console.log("Updated")
+
+    })
+})
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'));

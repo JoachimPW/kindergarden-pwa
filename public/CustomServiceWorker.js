@@ -50,6 +50,33 @@ workbox.routing.registerRoute(
     workbox.strategies.networkFirst()
   )
 
+  const bgSyncPlugin = new workbox.backgroundSync.Plugin('todoQueue', {
+    maxRetentionTime: 24 * 60
+  });
+  
+  workbox.routing.registerRoute(
+    'http://kindergarden-pwa.herokuapp.com/createNews',
+    workbox.strategies.networkFirst({
+      plugins: [bgSyncPlugin]
+    }),
+    'POST'
+  )
+
+  workbox.routing.registerRoute(
+    'http://kindergarden-pwa.herokuapp.com/api/push_message',
+    workbox.strategies.networkFirst({
+      plugins: [bgSyncPlugin]
+    }),
+    'POST'
+  )
+
+  workbox.routing.registerRoute(
+    'http://kindergarden-pwa.herokuapp.com/changeTime/5cdac5129e4bbdc614ec37bd',
+    workbox.strategies.networkFirst({
+      plugins: [bgSyncPlugin]
+    }),
+    'PUT'
+  )
   
 
 self.addEventListener('push', function (event) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import News from "./News.js";
 import Calendar from "./Calendar.js"
 import Header from "./Header.js";
+import CreateNews from "./CreateNews.js";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 export default class Home extends Component {
@@ -30,7 +31,32 @@ export default class Home extends Component {
             .then(response => response.json())
             .then(data => this.setState({ days: data }))
     }
-    
+
+ 
+    addNews(title, date, text ) {
+    fetch('http://kindergarden-pwa.herokuapp.com/createNews', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: title,
+          date: date,
+          text: text
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      fetch('http://kindergarden-pwa.herokuapp.com/api/push_message', {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: text,
+                title: title
+            }),
+        }).catch(error => console.error(error));
+
+    }
 
     sendNoti(text, title) {
         fetch('http://kindergarden-pwa.herokuapp.com/api/push_message', {
@@ -43,6 +69,20 @@ export default class Home extends Component {
                 title: title
             }),
         }).catch(error => console.error(error));
+    }
+
+    updateTime(inTime, outTime, id) {
+        fetch(`http://localhost:9090/changeTime/5cdac5129e4bbdc614ec37bd`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                in: inTime,
+                out: outTime
+            }),
+        }).catch(error => console.error(error));
+       
     }
 
     render() {
@@ -80,13 +120,14 @@ export default class Home extends Component {
                             render={(props) =>
                                 <React.Fragment>
                                     <News {...props} news={this.state.news} />
+                                    <CreateNews {...props} addNews={this.addNews}></CreateNews>
                                 </React.Fragment>}
                         />
 
                         <Route exact path={"/Calendar"}
                             render={(props) =>
                                 <React.Fragment>
-                                    <Calendar {...props} days={this.state.days} />
+                                    <Calendar {...props} days={this.state.days} updateTime={this.updateTime} />
                                 </React.Fragment>}
                         />
                     </Switch>
