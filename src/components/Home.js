@@ -22,18 +22,18 @@ export default class Home extends Component {
     componentDidMount() {
         //https://express-push.herokuapp.com/
         // http://localhost:9090
-        fetch('https://express-push.herokuapp.com/getNews')
+        fetch('http://kindergarden-pwa.herokuapp.com/getNews')
             .then(response => response.json())
             .then(data => this.setState({ news: data }))
 
-        fetch('https://express-push.herokuapp.com/getDays')
+        fetch('http://kindergarden-pwa.herokuapp.com/getDays')
             .then(response => response.json())
             .then(data => this.setState({ days: data }))
     }
     
 
     sendNoti(text, title) {
-        fetch('https://express-push.herokuapp.com/api/push_message', {
+        fetch('http://kindergarden-pwa.herokuapp.com/api/push_message', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'

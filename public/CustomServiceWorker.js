@@ -23,29 +23,30 @@ workbox.routing.registerRoute(
   )
 
 workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com',
+    'http://kindergarden-pwa.herokuapp.com',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com/',
+    'http://kindergarden-pwa.herokuapp.com/',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com/news',
-    workbox.strategies.networkFirst()
-  )
-
-  workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com/calendar',
-    workbox.strategies.networkFirst()
-  )
-  workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com/getNews',
+    'http://kindergarden-pwa.herokuapp.com/news',
     workbox.strategies.networkFirst()
   )
 
   workbox.routing.registerRoute(
-    'https://express-push.herokuapp.com/getDays',
+    'http://kindergarden-pwa.herokuapp.com/calendar',
+    workbox.strategies.networkFirst()
+  )
+  
+  workbox.routing.registerRoute(
+    'http://kindergarden-pwa.herokuapp.com/getNews',
+    workbox.strategies.networkFirst()
+  )
+
+  workbox.routing.registerRoute(
+    'http://kindergarden-pwa.herokuapp.com/getDays',
     workbox.strategies.networkFirst()
   )
 
