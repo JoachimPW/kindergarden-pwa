@@ -15,7 +15,8 @@ export default class Calendar extends Component {
         this.onChangeOut = this.onChangeOut.bind(this)
     }
 
-    handleTidspunkt() {
+    handleTidspunkt(event) {
+        event.preventDefault()
         this.props.updateTime(this.state.inTime, this.state.outTime)
     }
 
