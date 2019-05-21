@@ -71,7 +71,7 @@ export default class Home extends Component {
         }).catch(error => console.error(error));
     }
 
-    updateTime(inTime, outTime, id) {
+    updateTime(inTime, outTime) {
         fetch(`https://kindergarden-pwa.herokuapp.com/changeTime/5cdac5129e4bbdc614ec37bd`, {
             method: 'PUT',
             headers: {
