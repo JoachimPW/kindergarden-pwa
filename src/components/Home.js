@@ -72,7 +72,7 @@ export default class Home extends Component {
     }
 
     updateTime(inTime, outTime, id) {
-        fetch(`https://localhost:9090/changeTime/5cdac5129e4bbdc614ec37bd`, {
+        fetch(`https://kindergarden-pwa.herokuapp.com/changeTime/5cdac5129e4bbdc614ec37bd`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
