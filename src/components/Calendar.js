@@ -39,23 +39,27 @@ export default class Calendar extends Component {
 
                 <form className="form-fix">
                 <h1>{elm.date}</h1>
-                    <label>
-                        Vælg afleveringstidspunkt:</label>
-                <select value={this.state.inTime} onChange={this.onChangeIn}>
-                            <option value={elm.in} selected>{elm.in}</option>
-                            <option value="08:30">08:30</option>
-                            <option value="08:45">08.45</option>
-                            <option value="09:00">09:00</option>
-                            <option value="09:15">09:15</option>
+                   
+                       <label>Vælg afleveringstidspunkt:</label>
+                       <select class="selectpicker" value={this.state.inTime} onChange={this.onChangeIn}>
+                            <optgroup label="Formiddag">
+                                <option value={elm.in} selected>{elm.in}</option>
+                                <option value="08:30">08:30</option>
+                                <option value="08:45">08.45</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:15">09:15</option>
+                            </optgroup>
                         </select>
-                        <label>
-                        Vælg afhentningstidspunkt:</label>
-                        <select value={this.state.outTime} onChange={this.onChangeOut}>
-                            <option value={elm.out} selected>{elm.out}</option>
-                            <option value="15:15">15:15</option>
-                            <option value="15:30">15:30</option>
-                            <option value="15:45">15.45</option>
-                            <option value="16:00">16:00</option>
+
+                        <label>Vælg afhentningstidspunkt:</label>
+                        <select class="selectpicker" value={this.state.outTime} onChange={this.onChangeOut}>
+                            <optgroup label="Eftermiddag">
+                                <option value={elm.out} selected>{elm.out}</option>
+                                <option value="15:15">15:15</option>
+                                <option value="15:30">15:30</option>
+                                <option value="15:45">15.45</option>
+                                <option value="16:00">16:00</option>
+                            </optgroup>
                         </select>
                     
                     <button onClick={this.handleTidspunkt}>Ændre tidspunkt</button>

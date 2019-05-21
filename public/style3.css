@@ -264,11 +264,20 @@ a.article:hover {
 display:none;  
 }
 
+.custom-form {
+    width: 100%;
+}
+textarea {
+    min-height: 300px;
+    width: 100%;
+    resize:none;
+}
 
-
-
-
-
+select {
+    width: 50%;
+    height: 50px;
+    margin-bottom: 2%;
+}
 
 
 
