@@ -18,35 +18,35 @@ workbox.routing.registerRoute(
   )
 
   workbox.routing.registerRoute(
-    'http://localhost:3000',
+    'https://localhost:3000',
     workbox.strategies.networkFirst()
   )
 
 workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com',
+    'https://kindergarden-pwa.herokuapp.com',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/',
+    'https://kindergarden-pwa.herokuapp.com/',
     workbox.strategies.networkFirst()
   )
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/news',
+    'https://kindergarden-pwa.herokuapp.com/news',
     workbox.strategies.networkFirst()
   )
 
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/calendar',
+    'https://kindergarden-pwa.herokuapp.com/calendar',
     workbox.strategies.networkFirst()
   )
   
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/getNews',
+    'https://kindergarden-pwa.herokuapp.com/getNews',
     workbox.strategies.networkFirst()
   )
 
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/getDays',
+    'https://kindergarden-pwa.herokuapp.com/getDays',
     workbox.strategies.networkFirst()
   )
 
@@ -55,7 +55,7 @@ workbox.routing.registerRoute(
   });
   
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/createNews',
+    'https://kindergarden-pwa.herokuapp.com/createNews',
     workbox.strategies.networkFirst({
       plugins: [bgSyncPlugin]
     }),
@@ -63,7 +63,7 @@ workbox.routing.registerRoute(
   )
 
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/api/push_message',
+    'https://kindergarden-pwa.herokuapp.com/api/push_message',
     workbox.strategies.networkFirst({
       plugins: [bgSyncPlugin]
     }),
@@ -71,7 +71,7 @@ workbox.routing.registerRoute(
   )
 
   workbox.routing.registerRoute(
-    'http://kindergarden-pwa.herokuapp.com/changeTime/5cdac5129e4bbdc614ec37bd',
+    'https://kindergarden-pwa.herokuapp.com/changeTime/5cdac5129e4bbdc614ec37bd',
     workbox.strategies.networkFirst({
       plugins: [bgSyncPlugin]
     }),

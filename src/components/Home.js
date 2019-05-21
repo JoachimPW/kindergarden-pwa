@@ -23,18 +23,18 @@ export default class Home extends Component {
     componentDidMount() {
         //https://express-push.herokuapp.com/
         // http://localhost:9090
-        fetch('http://kindergarden-pwa.herokuapp.com/getNews')
+        fetch('https://kindergarden-pwa.herokuapp.com/getNews')
             .then(response => response.json())
             .then(data => this.setState({ news: data }))
 
-        fetch('http://kindergarden-pwa.herokuapp.com/getDays')
+        fetch('https://kindergarden-pwa.herokuapp.com/getDays')
             .then(response => response.json())
             .then(data => this.setState({ days: data }))
     }
 
  
     addNews(title, date, text ) {
-    fetch('http://kindergarden-pwa.herokuapp.com/createNews', {
+    fetch('https://kindergarden-pwa.herokuapp.com/createNews', {
         method: 'POST',
         body: JSON.stringify({
           title: title,
@@ -45,7 +45,7 @@ export default class Home extends Component {
           "Content-type": "application/json; charset=UTF-8"
         }
       })
-      fetch('http://kindergarden-pwa.herokuapp.com/api/push_message', {
+      fetch('https://kindergarden-pwa.herokuapp.com/api/push_message', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
@@ -59,7 +59,7 @@ export default class Home extends Component {
     }
 
     sendNoti(text, title) {
-        fetch('http://kindergarden-pwa.herokuapp.com/api/push_message', {
+        fetch('https://kindergarden-pwa.herokuapp.com/api/push_message', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
@@ -72,7 +72,7 @@ export default class Home extends Component {
     }
 
     updateTime(inTime, outTime, id) {
-        fetch(`http://localhost:9090/changeTime/5cdac5129e4bbdc614ec37bd`, {
+        fetch(`https://localhost:9090/changeTime/5cdac5129e4bbdc614ec37bd`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
