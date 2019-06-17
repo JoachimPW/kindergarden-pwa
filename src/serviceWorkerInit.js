@@ -26,7 +26,7 @@ function subscribeToPush() {
             console.log(sub)
             serviceWorkerRegistration.pushManager.subscribe(options).then(
                 function (pushSubscription) {
-                    fetch('http://kindergarden-pwa.herokuapp.com/api/subscribe', {
+                    fetch('https://kindergarden-pwa.herokuapp.com/api/subscribe', {
                         method: 'post',
                         headers: {
                             'Content-type': 'application/json'
