@@ -44,7 +44,7 @@
   text-align:center;
   max-height:175px;
   background-color: #7386D5;
-  
+  padding-top:10px;
   color: #fff;
   margin-bottom:25px;
   
@@ -319,6 +319,13 @@ input {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
+
+@media only screen and (max-width: 749px) {
+  .left {
+    display: none;
+  }
+}
+
 .left svg {
   height: 40px;
   width: auto;
@@ -520,4 +527,3 @@ fieldset {
 .picker--time .picker__box {
   padding: 0;
 }
-
